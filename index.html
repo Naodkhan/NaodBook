@@ -1,1 +1,1345 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>NaodBook</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f2f5;
+    color: #1c1e21;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.app {
+    max-width: 650px;
+    margin: auto;
+    min-height: 100vh;
+    background: #f0f2f5;
+    padding-bottom: 80px;
+}
+
+/* HEADER */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: white;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: #1877f2;
+}
+
+.header-icons {
+    display: flex;
+    gap: 8px;
+}
+
+.header-icons button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e4e6eb;
+    font-size: 18px;
+}
+
+/* PAGES */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* HOME */
+
+.welcome {
+    background: white;
+    padding: 18px 15px;
+    margin-bottom: 10px;
+}
+
+.welcome h2 {
+    font-size: 21px;
+}
+
+.welcome p {
+    color: #65676b;
+    margin-top: 5px;
+}
+
+/* CREATE POST */
+
+.create-post {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.create-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #1877f2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.post-input {
+    flex: 1;
+    background: #f0f2f5;
+    border-radius: 25px;
+    padding: 13px 17px;
+    color: #65676b;
+    cursor: pointer;
+}
+
+.post-buttons {
+    display: flex;
+    margin-top: 12px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.post-buttons button {
+    flex: 1;
+    background: white;
+    padding: 10px;
+    color: #65676b;
+    font-weight: bold;
+}
+
+/* POSTS */
+
+.post {
+    background: white;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-name {
+    font-weight: bold;
+}
+
+.post-time {
+    font-size: 12px;
+    color: #65676b;
+    margin-top: 3px;
+}
+
+.post-text {
+    margin-top: 14px;
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+.post-image {
+    width: 100%;
+    margin-top: 12px;
+    border-radius: 8px;
+    background: linear-gradient(135deg,#1877f2,#42b72a);
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.post-stats {
+    display: flex;
+    justify-content: space-between;
+    color: #65676b;
+    font-size: 13px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.post-actions {
+    display: flex;
+    padding-top: 7px;
+}
+
+.post-actions button {
+    flex: 1;
+    background: white;
+    padding: 10px;
+    color: #65676b;
+    font-weight: bold;
+}
+
+.post-actions button.liked {
+    color: #1877f2;
+}
+
+/* PROFILE */
+
+.profile-cover {
+    height: 150px;
+    background: linear-gradient(135deg,#1877f2,#00aaff);
+}
+
+.profile-info {
+    background: white;
+    text-align: center;
+    padding: 0 15px 20px;
+}
+
+.profile-avatar {
+    width: 90px;
+    height: 90px;
+    margin: -45px auto 10px;
+    position: relative;
+    border: 5px solid white;
+    border-radius: 50%;
+    background: #1877f2;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.profile-info h2 {
+    font-size: 23px;
+}
+
+.profile-info p {
+    color: #65676b;
+    margin-top: 5px;
+}
+
+.profile-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.profile-stat strong {
+    display: block;
+    font-size: 18px;
+}
+
+.profile-stat span {
+    color: #65676b;
+    font-size: 12px;
+}
+
+/* SEARCH */
+
+.search-box {
+    background: white;
+    padding: 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: #f0f2f5;
+    border-radius: 25px;
+    outline: none;
+    font-size: 15px;
+}
+
+.user-result {
+    background: white;
+    margin-top: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* NOTIFICATIONS */
+
+.notification {
+    background: white;
+    margin-bottom: 2px;
+    padding: 15px;
+    display: flex;
+    gap: 12px;
+}
+
+.notification p {
+    line-height: 1.4;
+}
+
+.notification small {
+    color: #65676b;
+}
+
+/* CHAT */
+
+.chat-box {
+    background: white;
+    min-height: 500px;
+    padding: 15px;
+}
+
+.message {
+    max-width: 75%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    margin-bottom: 10px;
+}
+
+.message.received {
+    background: #e4e6eb;
+}
+
+.message.sent {
+    background: #1877f2;
+    color: white;
+    margin-left: auto;
+}
+
+.chat-input {
+    position: fixed;
+    bottom: 62px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 650px;
+    width: 100%;
+    display: flex;
+    background: white;
+    padding: 8px;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: #f0f2f5;
+    border-radius: 20px;
+    outline: none;
+}
+
+.chat-input button {
+    width: 50px;
+    background: #1877f2;
+    color: white;
+    border-radius: 50%;
+    margin-left: 5px;
+}
+
+/* SETTINGS */
+
+.settings {
+    background: white;
+}
+
+.setting {
+    padding: 18px 15px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+}
+
+.setting span:first-child {
+    font-weight: bold;
+}
+
+.setting span:last-child {
+    color: #65676b;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+}
+
+.modal-content textarea {
+    width: 100%;
+    height: 140px;
+    resize: none;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 12px;
+    outline: none;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.modal-buttons button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.cancel {
+    background: #e4e6eb;
+}
+
+.publish {
+    background: #1877f2;
+    color: white;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 650px;
+    height: 65px;
+    background: white;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 50;
+}
+
+.nav-btn {
+    background: white;
+    color: #65676b;
+    font-size: 11px;
+    text-align: center;
+}
+
+.nav-btn div {
+    font-size: 22px;
+    margin-bottom: 3px;
+}
+
+.nav-btn.active {
+    color: #1877f2;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:400px) {
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .welcome h2 {
+        font-size: 19px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+        NaodBook
+    </div>
+
+    <div class="header-icons">
+
+        <button onclick="showPage('search')">
+            🔍
+        </button>
+
+        <button onclick="showPage('notifications')">
+            🔔
+        </button>
+
+        <button onclick="showPage('profile')">
+            👤
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+    <div class="welcome">
+
+        <h2>Welcome to NaodBook 👋</h2>
+
+        <p>
+            Connect with people and share your world.
+        </p>
+
+    </div>
+
+
+    <!-- CREATE POST -->
+
+    <div class="create-post">
+
+        <div class="create-top">
+
+            <div class="avatar">
+                N
+            </div>
+
+            <div class="post-input"
+                 onclick="openPostModal()">
+
+                What's on your mind?
+
+            </div>
+
+        </div>
+
+        <div class="post-buttons">
+
+            <button onclick="openPostModal()">
+                📝 Post
+            </button>
+
+            <button onclick="openPostModal()">
+                📷 Photo
+            </button>
+
+            <button onclick="openPostModal()">
+                😊 Feeling
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- POST 1 -->
+
+    <div class="post">
+
+        <div class="post-header">
+
+            <div class="avatar">
+                N
+            </div>
+
+            <div>
+
+                <div class="post-name">
+                    Naod
+                </div>
+
+                <div class="post-time">
+                    Just now · 🌍 Public
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="post-text">
+
+            Welcome to <b>NaodBook</b>! 🎉
+
+            This is our new public social network.
+
+            Connect, share, and communicate with people
+            around the world. 🌍
+
+        </div>
+
+        <div class="post-image">
+            NaodBook
+        </div>
+
+        <div class="post-stats">
+
+            <span id="likeCount1">
+                👍 12
+            </span>
+
+            <span>
+                4 comments
+            </span>
+
+        </div>
+
+        <div class="post-actions">
+
+            <button onclick="likePost(1,this)">
+                👍 Like
+            </button>
+
+            <button onclick="commentPost()">
+                💬 Comment
+            </button>
+
+            <button onclick="sharePost()">
+                ↗️ Share
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- POST 2 -->
+
+    <div class="post">
+
+        <div class="post-header">
+
+            <div class="avatar">
+                A
+            </div>
+
+            <div>
+
+                <div class="post-name">
+                    NaodBook User
+                </div>
+
+                <div class="post-time">
+                    10 minutes ago · 🌍 Public
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="post-text">
+
+            Hello NaodBook! 👋
+
+            I'm happy to be part of this community.
+
+        </div>
+
+        <div class="post-stats">
+
+            <span id="likeCount2">
+                👍 7
+            </span>
+
+            <span>
+                2 comments
+            </span>
+
+        </div>
+
+        <div class="post-actions">
+
+            <button onclick="likePost(2,this)">
+                👍 Like
+            </button>
+
+            <button onclick="commentPost()">
+                💬 Comment
+            </button>
+
+            <button onclick="sharePost()">
+                ↗️ Share
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<section id="search" class="page">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            placeholder="Search NaodBook..."
+            oninput="searchUsers(this.value)"
+        >
+
+    </div>
+
+    <div id="searchResults"></div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profile" class="page">
+
+    <div class="profile-cover"></div>
+
+    <div class="profile-info">
+
+        <div class="profile-avatar">
+            N
+        </div>
+
+        <h2>Naod</h2>
+
+        <p>
+            Welcome to my NaodBook profile.
+        </p>
+
+        <div class="profile-stats">
+
+            <div class="profile-stat">
+                <strong>0</strong>
+                <span>Posts</span>
+            </div>
+
+            <div class="profile-stat">
+                <strong>0</strong>
+                <span>Friends</span>
+            </div>
+
+            <div class="profile-stat">
+                <strong>0</strong>
+                <span>Followers</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- NOTIFICATIONS -->
+
+<section id="notifications" class="page">
+
+    <div class="welcome">
+        <h2>🔔 Notifications</h2>
+    </div>
+
+    <div class="notification">
+
+        <div class="avatar">
+            A
+        </div>
+
+        <p>
+            <b>NaodBook User</b>
+            liked your post.
+            <br>
+            <small>5 minutes ago</small>
+        </p>
+
+    </div>
+
+    <div class="notification">
+
+        <div class="avatar">
+            M
+        </div>
+
+        <p>
+            <b>New User</b>
+            started following you.
+            <br>
+            <small>10 minutes ago</small>
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- CHAT -->
+
+<section id="chat" class="page">
+
+    <div class="welcome">
+        <h2>💬 Messenger</h2>
+    </div>
+
+    <div class="chat-box" id="messages">
+
+        <div class="message received">
+            Hello! Welcome to NaodBook 👋
+        </div>
+
+        <div class="message sent">
+            Thank you! 😊
+        </div>
+
+    </div>
+
+    <div class="chat-input">
+
+        <input
+            id="messageInput"
+            type="text"
+            placeholder="Write a message..."
+        >
+
+        <button onclick="sendMessage()">
+            ➤
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settings" class="page">
+
+    <div class="welcome">
+        <h2>⚙️ Settings</h2>
+    </div>
+
+    <div class="settings">
+
+        <div class="setting">
+            <span>Account</span>
+            <span>›</span>
+        </div>
+
+        <div class="setting">
+            <span>Privacy</span>
+            <span>›</span>
+        </div>
+
+        <div class="setting">
+            <span>Notifications</span>
+            <span>›</span>
+        </div>
+
+        <div class="setting">
+            <span>Language</span>
+            <span>English</span>
+        </div>
+
+        <div class="setting">
+            <span>About NaodBook</span>
+            <span>v1.0</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <button
+        class="nav-btn active"
+        data-page="home"
+        onclick="showPage('home')">
+
+        <div>🏠</div>
+        Home
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-page="search"
+        onclick="showPage('search')">
+
+        <div>🔍</div>
+        Search
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        onclick="openPostModal()">
+
+        <div>➕</div>
+        Post
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-page="chat"
+        onclick="showPage('chat')">
+
+        <div>💬</div>
+        Chat
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-page="profile"
+        onclick="showPage('profile')">
+
+        <div>👤</div>
+        Profile
+
+    </button>
+
+</nav>
+
+</div>
+
+
+<!-- CREATE POST MODAL -->
+
+<div class="modal" id="postModal">
+
+    <div class="modal-content">
+
+        <h2>Create Post</h2>
+
+        <textarea
+            id="postText"
+            placeholder="What's on your mind?"
+        ></textarea>
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel"
+                onclick="closePostModal()">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="publish"
+                onclick="publishPost()">
+
+                Publish
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* PAGE NAVIGATION */
+
+function showPage(pageName) {
+
+    const pages =
+        document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    const selected =
+        document.getElementById(pageName);
+
+    if (selected) {
+        selected.classList.add("active");
+    }
+
+    const buttons =
+        document.querySelectorAll(".nav-btn");
+
+    buttons.forEach(function(button) {
+
+        button.classList.remove("active");
+
+        if (button.dataset.page === pageName) {
+            button.classList.add("active");
+        }
+
+    });
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* CREATE POST */
+
+function openPostModal() {
+
+    document
+        .getElementById("postModal")
+        .classList.add("show");
+
+    document
+        .getElementById("postText")
+        .focus();
+}
+
+
+function closePostModal() {
+
+    document
+        .getElementById("postModal")
+        .classList.remove("show");
+
+}
+
+
+function publishPost() {
+
+    const text =
+        document.getElementById("postText").value.trim();
+
+    if (text === "") {
+
+        alert("Please write something first.");
+
+        return;
+    }
+
+    const post =
+        document.createElement("div");
+
+    post.className = "post";
+
+    post.innerHTML = `
+
+        <div class="post-header">
+
+            <div class="avatar">
+                N
+            </div>
+
+            <div>
+
+                <div class="post-name">
+                    Naod
+                </div>
+
+                <div class="post-time">
+                    Just now · 🌍 Public
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="post-text">
+            ${escapeHTML(text)}
+        </div>
+
+        <div class="post-stats">
+            <span>👍 0</span>
+            <span>0 comments</span>
+        </div>
+
+        <div class="post-actions">
+
+            <button onclick="likePost(0,this)">
+                👍 Like
+            </button>
+
+            <button onclick="commentPost()">
+                💬 Comment
+            </button>
+
+            <button onclick="sharePost()">
+                ↗️ Share
+            </button>
+
+        </div>
+    `;
+
+    const home =
+        document.getElementById("home");
+
+    const create =
+        document.querySelector(".create-post");
+
+    home.insertBefore(post, create.nextSibling);
+
+    document.getElementById("postText").value = "";
+
+    closePostModal();
+
+}
+
+
+/* SECURITY */
+
+function escapeHTML(text) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+/* LIKE */
+
+function likePost(id, button) {
+
+    if (button.classList.contains("liked")) {
+
+        button.classList.remove("liked");
+
+        if (id === 1) {
+
+            document.getElementById("likeCount1")
+                .textContent = "👍 12";
+
+        }
+
+        if (id === 2) {
+
+            document.getElementById("likeCount2")
+                .textContent = "👍 7";
+
+        }
+
+    } else {
+
+        button.classList.add("liked");
+
+        if (id === 1) {
+
+            document.getElementById("likeCount1")
+                .textContent = "👍 13";
+
+        }
+
+        if (id === 2) {
+
+            document.getElementById("likeCount2")
+                .textContent = "👍 8";
+
+        }
+    }
+}
+
+
+/* COMMENT */
+
+function commentPost() {
+
+    const comment =
+        prompt("Write your comment:");
+
+    if (comment && comment.trim() !== "") {
+
+        alert("Comment added successfully! 💬");
+
+    }
+}
+
+
+/* SHARE */
+
+function sharePost() {
+
+    if (navigator.share) {
+
+        navigator.share({
+            title: "NaodBook",
+            text: "Check this post on NaodBook!"
+        });
+
+    } else {
+
+        alert("Post link copied!");
+
+    }
+}
+
+
+/* SEARCH */
+
+function searchUsers(value) {
+
+    const results =
+        document.getElementById("searchResults");
+
+    results.innerHTML = "";
+
+    if (value.trim() === "") {
+        return;
+    }
+
+    const users = [
+        "Naod",
+        "NaodBook User",
+        "New User"
+    ];
+
+    users.forEach(function(user) {
+
+        if (
+            user.toLowerCase()
+                .includes(value.toLowerCase())
+        ) {
+
+            const result =
+                document.createElement("div");
+
+            result.className = "user-result";
+
+            result.innerHTML = `
+
+                <div class="avatar">
+                    ${user.charAt(0)}
+                </div>
+
+                <div>
+                    <b>${escapeHTML(user)}</b>
+                    <br>
+                    <small>NaodBook user</small>
+                </div>
+
+            `;
+
+            results.appendChild(result);
+        }
+
+    });
+}
+
+
+/* CHAT */
+
+function sendMessage() {
+
+    const input =
+        document.getElementById("messageInput");
+
+    const text =
+        input.value.trim();
+
+    if (text === "") {
+        return;
+    }
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "message sent";
+
+    message.textContent = text;
+
+    document
+        .getElementById("messages")
+        .appendChild(message);
+
+    input.value = "";
+
+}
+
+
+/* ENTER TO SEND MESSAGE */
+
+document
+    .getElementById("messageInput")
+    .addEventListener("keypress", function(event) {
+
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+
+    });
+
+
+/* CLOSE MODAL WHEN CLICKING OUTSIDE */
+
+document
+    .getElementById("postModal")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+            closePostModal();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
